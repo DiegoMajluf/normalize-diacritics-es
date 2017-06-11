@@ -1,5 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**List of all diacritics and replacements */
-export let diacritics = [
+exports.diacritics = [
     { letter: ' ', diacritics: /[\u00A0]/g },
     { letter: '0', diacritics: /[\u07C0]/g },
     { letter: 'A', diacritics: /[\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F]/g },
@@ -102,14 +104,15 @@ export let diacritics = [
 /**
  * Find and replace all diacritics found from the given string.
  */
-export function normalize(str = '') {
+function normalize(str = '') {
     if (!str)
         return str;
     if (typeof str !== 'string')
         throw new TypeError(`Invalid type ${typeof str}. Only value of type String is allowed`);
     let normalized = str;
-    for (let i = 0; i < diacritics.length; i += 1) {
-        normalized = normalized.replace(diacritics[i].diacritics, diacritics[i].letter);
+    for (let i = 0; i < exports.diacritics.length; i += 1) {
+        normalized = normalized.replace(exports.diacritics[i].diacritics, exports.diacritics[i].letter);
     }
     return normalized;
 }
+exports.normalize = normalize;
