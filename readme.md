@@ -1,4 +1,4 @@
-Adaptation of normalize-diacritics for es2016 usage.
+Adaptation of normalize-diacritics for es6 usage.
 
 
 ## Install
@@ -13,7 +13,7 @@ Brief example to show how to use:
 
 ```js
 const  { normalize, normalizeKeepCase } = require('normalize-diacritics-es').normalize;
-//import { normalize } from 'normalize-diacritics-es'
+//import { normalize, normalizeKeepCase } from 'normalize-diacritics-es'
 
 /* To normalize string */
 const str = 'Söme sTüff wiTh áccènts';

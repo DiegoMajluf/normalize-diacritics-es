@@ -1,6 +1,6 @@
 {
   "name": "normalize-diacritics-es",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "es6 compatible version of normalize-diacritics",
   "main": "index.js",
   "scripts": {
