@@ -104,7 +104,7 @@ exports.diacritics = [
 /**
  * Find and replace all diacritics found from the given string.
  */
-function normalize(str = '') {
+function normalizeKeepCase(str = '') {
     if (!str)
         return str;
     if (typeof str !== 'string')
@@ -114,5 +114,9 @@ function normalize(str = '') {
         normalized = normalized.replace(exports.diacritics[i].diacritics, exports.diacritics[i].letter);
     }
     return normalized;
+}
+exports.normalizeKeepCase = normalizeKeepCase;
+function normalize(str = '') {
+    return normalizeKeepCase(str).toLocaleLowerCase();
 }
 exports.normalize = normalize;

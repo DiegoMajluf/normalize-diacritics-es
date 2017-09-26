@@ -12,10 +12,11 @@ $ npm install --save normalize-diacritics-es
 Brief example to show how to use:
 
 ```js
-const  normalize = require('normalize-diacritics-es').normalize;
+const  { normalize, normalizeKeepCase } = require('normalize-diacritics-es').normalize;
 //import { normalize } from 'normalize-diacritics-es'
 
 /* To normalize string */
-const str = 'söme stüff with áccènts';
+const str = 'Söme sTüff wiTh áccènts';
 normalize(str); // some stuff with accents
+normalizeKeepCase(str); // Some sTuff wiTh accents
 ```

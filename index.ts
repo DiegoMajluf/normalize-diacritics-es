@@ -104,7 +104,7 @@ export let diacritics = [
 /**
  * Find and replace all diacritics found from the given string.
  */
-export function normalize(str = '') {
+export function normalizeKeepCase(str = ''): string {
     if (!str) return str;
 
 
@@ -119,6 +119,10 @@ export function normalize(str = '') {
     }
 
     return normalized;
+}
+
+export function normalize(str = ''): string {
+    return normalizeKeepCase(str).toLocaleLowerCase()
 }
 
 
