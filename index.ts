@@ -115,7 +115,7 @@ export function normalizeKeepCase(str = ''): string {
     let normalized = str;
 
     for (let i = 0; i < diacritics.length; i += 1) {
-        normalized = normalized.replace(diacritics[i].diacritics, diacritics[i].letter);
+        normalized = normalized.replace(diacritics[i].diacritics, diacritics[i].diacritics.source);
     }
 
     return normalized;
@@ -125,5 +125,32 @@ export function normalize(str = ''): string {
     return normalizeKeepCase(str).toLocaleLowerCase()
 }
 
+export function toRegEx(str = ''): RegExp {
+    if (!str) return /.*/;
+
+
+    if (typeof str !== 'string')
+        throw new TypeError(`Invalid type ${typeof str}. Only value of type String is allowed`);
+
+
+    let normalized = str;
+
+    for (let i = 0; i < diacritics.length; i += 1) {
+        normalized = normalized.replace(diacritics[i].diacritics,
+            diacritics[i].diacritics.source
+                .slice(1, -1).split('\\')
+                .slice(1)
+                .map(x => unicodeToChar("\\" + x))
+                .join('')
+        );
+    }
+}
+
+function unicodeToChar(text: string) {
+    return text.replace(/\\u[\dA-F]{4}/gi,
+        function (match) {
+            return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+        });
+}
 
 
