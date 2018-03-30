@@ -125,7 +125,7 @@ export function normalize(str = ''): string {
     return normalizeKeepCase(str).toLocaleLowerCase()
 }
 
-export function toRegEx(str = ''): RegExp {
+export function toRegEx(str: string = '', flags: string): RegExp {
     if (!str) return /.*/;
 
 
@@ -136,14 +136,16 @@ export function toRegEx(str = ''): RegExp {
     let normalized = str;
 
     for (let i = 0; i < diacritics.length; i += 1) {
-        normalized = normalized.replace(diacritics[i].diacritics,
+        normalized = normalized.replace(diacritics[i].diacritics, "[" +
             diacritics[i].diacritics.source
                 .slice(1, -1).split('\\')
                 .slice(1)
                 .map(x => unicodeToChar("\\" + x))
-                .join('')
+                .join('') + "]"
         );
     }
+
+    return new RegExp(normalized, flags)
 }
 
 function unicodeToChar(text: string) {

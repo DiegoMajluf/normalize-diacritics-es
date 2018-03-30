@@ -4,7 +4,8 @@
   "description": "es6 compatible version of normalize-diacritics",
   "main": "index.js",
   "scripts": {
-    "publicar": "tsc -d && npm publish"
+    "publicar": "tsc -d index.ts && npm publish",
+    "test": "tsc test.ts && npm test"
   },
   "repository": {
     "type": "git",
